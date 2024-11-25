@@ -49,8 +49,6 @@ resource "aws_security_group" "vpn_sg" {
   }
 }
 
-
-
 resource "aws_instance" "vpn" {
   ami           = "ami-0866a3c8686eaeeba"   # Ubuntu 24.04 LTS in US-EAST-1
   instance_type = "t2.micro"
@@ -62,10 +60,15 @@ resource "aws_instance" "vpn" {
   
 }
 
-output "test"{
-  value = file("setup_wireguard_ubuntu.sh")
+resource "aws_eip" "vpn_eip" {
+  instance = aws_instance.vpn.id
+  domain   = "vpc"
 }
 
+# output "test"{
+#   value = file("setup_wireguard_ubuntu.sh")
+# }
+
 output "vpn_ip" {
-  value = aws_instance.vpn.public_ip
+  value = aws_eip.vpn_eip.public_ip
 }
