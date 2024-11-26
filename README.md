@@ -21,12 +21,12 @@ Sets up a WireGuard VPN server on AWS using an EC2 instance.
 1. Clone this repository
 2. Initialize Terraform:
 
-terraform init
+`terraform init`
 
 
 3. Apply the configuration:
 
-terraform apply
+`terraform apply`
 
 
 4. After deployment, you can connect to the instance using AWS Systems Manager Session Manager
@@ -45,4 +45,4 @@ terraform apply
 
 To destroy all resources:
 
-terraform destroy
+`terraform destroy`
